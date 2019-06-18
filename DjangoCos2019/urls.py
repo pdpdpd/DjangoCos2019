@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from message.views import getform
+from cosmid.views import getmain
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('msg/', getform)
+    path('msg/', getform),
+    path('mp/', getmain)
 ]

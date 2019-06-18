@@ -1,0 +1,406 @@
+<title>Personalized Off-target Detection!</title>
+<style type="text/css">
+body {font-family: Arial;background-color: e9ebee;}
+h1{padding-left: 5%;}
+</style>
+</head>
+
+<body>
+
+<table width=100% border=0 cellpadding=0 cellspacing=5 bgcolor="#00417b" >
+<tr>
+<td width=80% valign=top align=right>
+</td>
+<td width=5% valign=top align=center>
+<!-- <a href="../../cgi-bin/crispr/COSMID_Output_Help_File.pdf" target="_blank">Help</a> -->
+   <button onclick="javascript:window.location.href='COSMID_Output_Help_File.pdf';"style="border:none;background-color:#00417b;color:e9ebee" >Help</button>
+
+</td>
+<td width=5% valign=top align=center>
+
+<button onclick="javascript:window.location.href='https://www.youtube.com/channel/UCzATmdmnmEPgrmzxjwnhMzQ';"style="border:none;background-color:#00417b;color:e9ebee" >Video</button>
+
+</td>
+<td width=10% valign=top align=center>
+
+<button onclick="javascript:window.location.href='https://groups.google.com/forum/#!forum/cosmid_group';"style="border:none;background-color:#00417b;color:e9ebee" >Google Forum</button>
+   
+</td>
+</tr>
+</table>
+
+
+<h1 padding-left: 20%; style='font-size: 35px'><font color="#605f64"><b>PGOTS: Personalized gRNA Off-Target Search</b></font></h1>
+
+<form action="/mp/"  enctype='multipart/form-data' method=get name = 'myform'>
+    
+    
+    
+<table width=100% border=0 cellpadding=0 cellspacing=4>
+<tr>
+
+
+<!-- ref genome -->
+
+
+
+
+<td width=20% valign=top >
+
+<table align=center border=0 cellpadding=5 cellspacing=0>
+<tr>
+<td  valign=top width="100%" bgcolor="#545358" style='font-size: 20px; color: #ffffff'><center>SELECT REF GENOME</center></font>
+</td>
+</tr>
+
+<tr>
+<td align=center width=100% bgcolor="#545358" style='font-size: 20px;'>
+
+
+
+<select name="target_database" size="8" style="font-size : 15px; width: 300px" onclick = 'document.getElementById("dna").checked = "checked"'>
+<option selected value="hg38">Homo sapiens GRCh38 (hg38)</option>
+<option value="hg19">Homo sapiens GRCh37 (hg19)</option>
+<option value="hg18">Homo sapiens NCBI36 (hg18)</option>
+<option value="ce10">C elegans (ce10/WS220)</option>
+<option value="rheMac2">Macaca mulatta Mmul_051212 (rheMac2)</option>
+<option value="mm10">Mus musculus GRCm38 (mm10)</option>
+<option value="mm9">Mus musculus NCBI37 (mm9)</option>
+<option value="rn6">Rattus norvegicus (rn6)</option>
+<option value="HG00110_hap1">HG00110_hap1</option>
+<option value="HG00110_hap2">HG00110_hap2</option>
+
+<!--
+<option value="rn5_idx">Rattus norvegicus NCBI5 (rn5)</option>
+<option value="rn4_idx">Rattus norvegicus NCBI3 (rn4)</option>
+-->
+</select>
+<br>
+<tr>
+<td  valign=top width="100%" bgcolor="#e9ebee" style='font-size: 20px; color: #605f64'><center><b>------OR------</b></center></font>
+</td>
+</tr>
+
+
+<tr>
+<td  valign=top width="100%" bgcolor="#545358" style='font-size: 20px; color: #ffffff'><center>USE CUSTOM GENOME</center></font>
+</td>
+</tr>
+
+
+<!-- custom genome -->
+
+
+<tr>
+<td align=center width=90% bgcolor="#545358" style='font-size: 20px; padding: 5%;'>
+
+<p>
+
+<button type="button"style="width:90%;height:80px;border:none;background-color:#F5F5F5" ><font color="#605f64" size=4px>
+First time user<br></font><br>UPLOAD YOUR OWN GENOME</button>
+
+</p>
+<p>
+
+</p>
+
+
+<p>
+
+<button type="button"style="width:90%;height:80px;border:none;background-color:#F5F5F5" ><font color="#605f64" size=4px>
+Already uploaded<br></font><br>CLICK HERE TO LOGIN</button>
+</p>
+
+</td>
+</tr>
+</table>
+
+
+<!-- seq -->
+
+
+<td width=33% valign=top align=center>
+<table align=left width=96% border=0 cellpadding=4 cellspacing=0>
+<tr>
+<td align=center width="100%" bgcolor="#821002" style='font-size: 20px; color: #e9ebee'>QUERY OPTIONS</font>
+</td>
+</tr>
+
+
+
+<tr>
+<td valign=top bgcolor="#Faf1f0" style='font-size: 15px'>
+<div style='font-size: 15px; color: #000000'>
+<input type="radio" name="tag_type" value="seq" checked id = 'seq'>
+<b>Enter Guide Strand Sequence</b> <span style='font-size: 13px; color: #626262'>in text window below</span>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<td align=center width=100% bgcolor="#Faf1f0" style='font-size: 15px'>
+    <br>
+<input type="text" name="tag" value="" size="60" style='font-size: 12px' maxength="60" onfocus = 'document.getElementById("seq").checked = "checked"'>
+<br><br>
+
+
+</td>
+</tr>
+
+
+
+
+<tr>
+    <td valign=top bgcolor="#Faf1f0" style='font-size: 13px'>
+        <div style='font-size: 15px; color: #000000'>
+            <input type="radio" name="tag_type" value="upload_file" checked id = 'seq'>
+                <b>Upload bulk gRNA sequence</b> <span style='font-size: 13px; color: #626262'></span>
+        </div>
+        
+    </td>
+</tr>
+
+
+<tr>
+    <td valign=top bgcolor="#Faf1f0" style='font-size: 13px;' >
+    
+        <p align=center>
+        
+        <button type="button" style="width:30%;height:32px;border:none;background-color:#821002" ><font color="#e9ebee" size=2px>
+            Download template</button>
+        
+        &emsp;
+        
+        <button type="button"  style="width:30%;height:32px;border:none;background-color:#821002;" ><font color="#e9ebee" size=2px>
+            Upload sequence</button>
+        </p>
+        &emsp;
+    </td>
+</tr>
+
+
+<!-- not defined yet -->
+<tr>
+<td valign=top width=100% bgcolor="#e9ebee" style='font-size: 10px'>
+<div style='font-size: 7px; color: #000000'>
+    
+    <br>
+</div>
+</td>
+</tr>
+
+<tr>
+<td align=center width="100%" bgcolor="#821002" style='font-size: 20px; color: #e9ebee'>SEARCH OPTIONS</font>
+</td>
+</tr>
+
+<tr>
+<td valign=top align=center width=90% bgcolor="#Faf1f0" style='font-size: 13px'>
+<br> <b>&nbsp;PAM suffix: </b>
+<input type="text" name="tag_suffix" value="NGG" size="12" style='font-size: 12px' maxlength="10">
+<!--
+<select name="tag_suffix" class="drop_down">
+<option value="">NONE</option>
+<option selected value="NGG">NGG</option>
+<option value="NAG">NAG</option>
+<option value="NRG">NRG</option>
+</select>
+-->
+<br>
+<span style='font-size: 13px; color: #626262'>can be NGG, NAG, NRG, or left empty (no appended)</span>
+</td>
+</tr>
+
+<tr>
+<td valign=top bgcolor="#Faf1f0" style='font-size: 15px'>
+<br>
+<div style='font-size: 15px; color: #000000' align=center> &nbsp;<b>Allowed indels and mismatch </b> <span style='font-size: 13px; color: #626262'></div>
+</td>
+</tr>
+
+<tr>
+<td valign=top bgcolor="#Faf1f0" style='font-size: 15px'>
+<table class="matrix" border="0" style='font-size: 13px' align=center>
+<tr>
+<th>&nbsp;</th>
+<th>&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</th>
+<th>&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</th>
+<th>&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</th>
+<!-- <th>&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</th> -->
+<th style='font-size: 13px'> (number of allowed mismatches)</th>
+</tr>
+
+<tr>
+<td><input type="checkbox" name="CheckBox_no_indel" class="multiple_choice" checked > No indels</td>
+<th><input type="radio" name="mismatch_no_indel" class="multiple_choice" value="0" ></th>
+<th><input type="radio" name="mismatch_no_indel" class="multiple_choice" value="1" ></th>
+<th><input type="radio" name="mismatch_no_indel" class="multiple_choice" value="2" checked></th>
+<th><input type="radio" name="mismatch_no_indel" class="multiple_choice" value="3" ></th>
+<!-- <th><input type="radio" name="mismatch_no_indel" class="multiple_choice" value="4" ></th> -->
+</tr>
+<tr>
+<td><input type="checkbox" name="CheckBox_1_del" class="multiple_choice" checked> 1-base Del</td>
+<th><input type="radio" name="mismatch_1_del" class="multiple_choice" value="0" ></th>
+<th><input type="radio" name="mismatch_1_del" class="multiple_choice" value="1" checked></th>
+<th><input type="radio" name="mismatch_1_del" class="multiple_choice" value="2" ></th>
+<!-- <th><input type="radio" name="mismatch_1_del" class="multiple_choice" value="3" ></th>  -->
+<!-- <th><input type="radio" name="mismatch_1_del" class="multiple_choice" value="4" ></th>  -->
+</tr>
+<tr>
+<td><input type="checkbox" name="CheckBox_1_ins" class="multiple_choice" checked> 1-base Ins</td>
+<th><input type="radio" name="mismatch_1_ins" class="multiple_choice" value="0" ></th>
+<th><input type="radio" name="mismatch_1_ins" class="multiple_choice" value="1" checked></th>
+<th><input type="radio" name="mismatch_1_ins" class="multiple_choice" value="2" ></th>
+<!-- <th><input type="radio" name="mismatch_1_ins" class="multiple_choice" value="3" ></th> -->
+<!-- <th><input type="radio" name="mismatch_1_ins" class="multiple_choice" value="4" ></th> -->
+</tr>
+
+<!-- the purpose of the following block is just for cosmatic, making the background longer/lower than the text box -->
+<tr>
+<td></td>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+<tr>
+<td></td>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+<tr>
+<td></td>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+<!-- the purpose of the above block is just cosmatic  -->
+</table>
+
+
+
+
+
+<!-- PCR  -->
+
+
+
+
+
+</td>
+</tr>
+</table>
+</td>
+
+<td valign=top rowspan=1 width=25%>
+
+<table width=98% border=0 cellpadding=5 cellspacing=0>
+<tr>
+<td align=center width="100%" bgcolor="#002453" style='font-size: 20px; color: #ffffff'>PCR PRIMER DESIGN</font>
+</td>
+</tr>
+
+<tr>
+<td valign=top align=center width=90% bgcolor="#f7feff" style='font-size: 16px'>
+<br>
+<input type="checkbox" name="primer_design" class="multiple_choice" > Perform Primer Design </td>
+</tr>
+
+
+<tr>
+<td valign=top align=center width=88% bgcolor="#f7feff" style='font-size:15px;'>
+<br> <b>&nbsp;Primer design parameter templates: </b>
+<br>
+<br>
+<input type="button" style="border:none;background-color:#002453;color:e9ebee" value="Default" onclick="minSeparationUncleavedToCleaved.value=110;minCleavageProductSizeDifference.value=0;minAmpliconLength.value=220;maxAmpliconLength.value=330;optimalAmpliconLength.value=275;primer_design.checked=true;">
+    
+    
+<input type="button" style="border:none;background-color:#002453;color:e9ebee" value="Illumina_250" onclick="minSeparationUncleavedToCleaved.value=62;minCleavageProductSizeDifference.value=0;minAmpliconLength.value=125;maxAmpliconLength.value=175;optimalAmpliconLength.value=160;primer_design.checked=true;">
+<input type="button" style="border:none;background-color:#002453;color:e9ebee" value="Illumina_250_paired" onclick="minSeparationUncleavedToCleaved.value=120;minCleavageProductSizeDifference.value=0;minAmpliconLength.value=250;maxAmpliconLength.value=350;optimalAmpliconLength.value=300;primer_design.checked=true;">
+<input type="button" style="border:none;background-color:#002453;color:e9ebee" value="SMRT" onclick="minSeparationUncleavedToCleaved.value=135;minCleavageProductSizeDifference.value=0;minAmpliconLength.value=250;maxAmpliconLength.value=600;optimalAmpliconLength.value=280;primer_design.checked=true;">
+<input type="button" style="border:none;background-color:#002453;color:e9ebee" value="enzyme" onclick="minSeparationUncleavedToCleaved.value=150;minCleavageProductSizeDifference.value=125;minAmpliconLength.value=250;maxAmpliconLength.value=1000;optimalAmpliconLength.value=450;primer_design.checked=true;">
+</td>
+</tr>
+
+<tr>
+<td valign=top bgcolor="#f7feff" style='font-size: 15px'>
+<br>
+<div style='font-size: 15px; color: #000000'> &nbsp;&nbsp;<b>Parameter setting: </b> <span style='font-size: 13px; color: #626262'></div>
+</td>
+</tr>
+
+<tr>
+<td valign=top bgcolor="#f7feff" style='font-size: 15px'>
+    
+<div style='font-size: 15px; color: #000000'>  &nbsp; &nbsp; Min Separation Uncleaved to Cleaved:
+<input type="text" name="minSeparationUncleavedToCleaved" id="minSeparationUncleavedToCleaved" value="110" size="10" style='font-size: 12px' maxength="60">
+</div>
+
+<div style='font-size: 3px; color: #000000'> &nbsp;&nbsp;<span style='font-size: 13px; color: #626262'></div>
+
+<div style='font-size: 15px; color: #000000'>  &nbsp; &nbsp; Min Cleavage Product Size Difference:
+<input type="text" name="minCleavageProductSizeDifference" id="minCleavageProductSizeDifference" value="0" size="10" style='font-size: 12px' maxength="60">
+</div>
+
+<div style='font-size: 3px; color: #000000'> &nbsp;&nbsp;<span style='font-size: 13px; color: #626262'></div>
+
+<div style='font-size: 15px; color: #000000' align=center>  &nbsp; &nbsp;&nbsp; Minmum Amplicon Length:&nbsp;
+<input type="text" name="minAmpliconLength" id="minAmpliconLength" value="220" size="10" style='font-size: 12px' maxength="60">
+</div>
+
+<div style='font-size: 3px; color: #000000'> &nbsp;&nbsp;<span style='font-size: 13px; color: #626262'></div>
+
+<div style='font-size: 15px; color: #000000' align=center>  &nbsp; &nbsp; Maximum Amplicon Length:
+<input type="text" name="maxAmpliconLength" id="maxAmpliconLength" value="330" size="10" style='font-size: 12px' maxength="60">
+</div>
+</div>
+
+<div style='font-size: 3px; color: #000000'> &nbsp;&nbsp;<span style='font-size: 13px; color: #626262'></div>
+
+<div style='font-size: 15px; color: #000000' align=center>  &nbsp; &nbsp; Optimal Amplicon Length:&nbsp; &nbsp;
+<input type="text" name="optimalAmpliconLength" id="optimalAmpliconLength" value="275" size="10" style='font-size: 12px' maxength="60">
+</div>
+
+
+<div style='font-size: 3px; color: #000000'> &nbsp;&nbsp;<span style='font-size: 13px; color: #626262'></div>
+<div style='font-size: 15px; color: #000000'>  &nbsp; &nbsp;
+</div>
+</td>
+</tr>
+
+</table>
+
+
+<table width=100% border=0 cellpadding=5 cellspacing=0>
+<tr>
+<td align=center>
+<br>
+<br>
+<BUTTON TYPE="submit" style="font-size: 20px;width:45%;height:50px;border:none;background-color:#4080ff;color:e9ebee" >SUBMIT</BUTTON>
+
+        &emsp;
+
+<BUTTON TYPE="reset" style="font-size: 20px;width:45%;height:50px;border:none;background-color:#7f8081;color:e9ebee" >RESET</BUTTON>
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+</table>
+</form>
+<br>
+<ul>
+<li style='font-size: 13px; color: #626262'>If you use COSMID, please cite:  COSMID: A Web-based Tool for Identifying and Validating CRISPR/Cas Off-target Sites.  TJ Cradick, P Qiu, CM Lee, EJ Fine, G Bao.  Molecular Therapy—Nucleic Acids 3 (12), e214. <a href="http://www.nature.com/mtna/journal/v3/n12/abs/mtna201464a.html" target="_blank">Link</a></li>
+<li style='font-size: 13px; color: #626262'>The ability of CRISPR to cut sites with indels described here: Nucleic Acids Research, <a href="http://nar.oxfordjournals.org/content/early/2014/05/16/nar.gku402.short" target="_blank">Link</a></li>
+<li style='font-size: 13px; color: #626262'>COSMID is made available to non-profit academic/research institutions at free-of-cost for the purpose of internal research and development only. For-profit institutions or companies can obtain access to COSMID via a license agreement. For further details, please contact Ciaran Lee at <a href="mailto:Ciaran.Lee@rice.edu">Ciaran.Lee@rice.edu</a></li>
+</ul>
+
+
+
+</body>
+</html>
+

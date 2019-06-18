@@ -1,0 +1,2 @@
+# 06182019
+# migrate previous cosmid to current Django

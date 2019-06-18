@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'message'
+    'message',
+    'cosmid'
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         'NAME': "testDjango",
         'USER': "postgres",
         'PASSWORD': "",
-        'HOST':""
+        'HOST': ""
     }
 }
 
