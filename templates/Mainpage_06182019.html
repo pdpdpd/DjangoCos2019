@@ -49,16 +49,25 @@ h1{padding-left: 5%;}
 
 <table align=center border=0 cellpadding=5 cellspacing=0>
 <tr>
-<td  valign=top width="100%" bgcolor="#545358" style='font-size: 20px; color: #ffffff'><center>SELECT REF GENOME</center></font>
+<td  valign=top width="100%" bgcolor="#545358" style='font-size: 20px; color: #ffffff'><center>USE REF GENOME</center></font>
+</td>
+</tr>
+    <tr>
+<td valign=top bgcolor="#c1c1c1" style='font-size: 15px'>
+<div style='font-size: 15px; color: #000000'>
+<input type="radio" name="genome" class="multiple_choice" value="refgenome" checked> <b>Select the reference genome</b>
+</div>
 </td>
 </tr>
 
+
+
 <tr>
-<td align=center width=100% bgcolor="#545358" style='font-size: 20px;'>
+<td align=center width=100% bgcolor="#c1c1c1" style='font-size: 20px;'>
 
 
 
-<select name="target_database" size="8" style="font-size : 15px; width: 300px" onclick = 'document.getElementById("dna").checked = "checked"'>
+<select name="target_database" size="6" style="font-size : 15px; width: 300px" onclick = 'document.getElementById("dna").checked = "checked"'>
 <option selected value="hg38">Homo sapiens GRCh38 (hg38)</option>
 <option value="hg19">Homo sapiens GRCh37 (hg19)</option>
 <option value="hg18">Homo sapiens NCBI36 (hg18)</option>
@@ -87,9 +96,33 @@ h1{padding-left: 5%;}
 </td>
 </tr>
 
+<tr>
+<td valign=top bgcolor="#c1c1c1" style='font-size: 15px'>
+<div style='font-size: 15px; color: #000000'>
+
+<input type="radio" name="genome" class="multiple_choice" value="pgenome"> <b>Enter the code for your uploaded genome</b> <span style='font-size: 13px; color: #626262'>in text window below</span>
+
+</div>
+</td>
+</tr>
+
+
+    <tr>
+<td align=center width=100% bgcolor="#c1c1c1" style='font-size: 15px'>
+
+<input type="text" name="tag" value="" size="60" style='font-size: 12px' maxength="60" onfocus = 'document.getElementById("genome").name = "pgenome"'>
+<br><br>
+
+
+</td>
+</tr>
 
 <!-- custom genome -->
 
+    <tr>
+<td  valign=top width="100%" bgcolor="#e9ebee" style='font-size: 20px; color: #605f64'><center><b>------OR------</b></center></font>
+</td>
+</tr>
 
 <tr>
 <td align=center width=90% bgcolor="#545358" style='font-size: 20px; padding: 5%;'>
@@ -100,16 +133,7 @@ h1{padding-left: 5%;}
 First time user<br></font><br>UPLOAD YOUR OWN GENOME</button>
 
 </p>
-<p>
 
-</p>
-
-
-<p>
-
-<button type="button"style="width:90%;height:80px;border:none;background-color:#F5F5F5" ><font color="#605f64" size=4px>
-Already uploaded<br></font><br>CLICK HERE TO LOGIN</button>
-</p>
 
 </td>
 </tr>
@@ -154,10 +178,11 @@ Already uploaded<br></font><br>CLICK HERE TO LOGIN</button>
 <tr>
     <td valign=top bgcolor="#Faf1f0" style='font-size: 13px'>
         <div style='font-size: 15px; color: #000000'>
+            <br>
             <input type="radio" name="tag_type" value="upload_file" checked id = 'seq'>
                 <b>Upload bulk gRNA sequence</b> <span style='font-size: 13px; color: #626262'></span>
         </div>
-        
+
     </td>
 </tr>
 
@@ -315,8 +340,8 @@ Already uploaded<br></font><br>CLICK HERE TO LOGIN</button>
 <br>
 <br>
 <input type="button" style="border:none;background-color:#002453;color:e9ebee" value="Default" onclick="minSeparationUncleavedToCleaved.value=110;minCleavageProductSizeDifference.value=0;minAmpliconLength.value=220;maxAmpliconLength.value=330;optimalAmpliconLength.value=275;primer_design.checked=true;">
-    
-    
+
+
 <input type="button" style="border:none;background-color:#002453;color:e9ebee" value="Illumina_250" onclick="minSeparationUncleavedToCleaved.value=62;minCleavageProductSizeDifference.value=0;minAmpliconLength.value=125;maxAmpliconLength.value=175;optimalAmpliconLength.value=160;primer_design.checked=true;">
 <input type="button" style="border:none;background-color:#002453;color:e9ebee" value="Illumina_250_paired" onclick="minSeparationUncleavedToCleaved.value=120;minCleavageProductSizeDifference.value=0;minAmpliconLength.value=250;maxAmpliconLength.value=350;optimalAmpliconLength.value=300;primer_design.checked=true;">
 <input type="button" style="border:none;background-color:#002453;color:e9ebee" value="SMRT" onclick="minSeparationUncleavedToCleaved.value=135;minCleavageProductSizeDifference.value=0;minAmpliconLength.value=250;maxAmpliconLength.value=600;optimalAmpliconLength.value=280;primer_design.checked=true;">
@@ -333,7 +358,7 @@ Already uploaded<br></font><br>CLICK HERE TO LOGIN</button>
 
 <tr>
 <td valign=top bgcolor="#f7feff" style='font-size: 15px'>
-    
+
 <div style='font-size: 15px; color: #000000'>  &nbsp; &nbsp; Min Separation Uncleaved to Cleaved:
 <input type="text" name="minSeparationUncleavedToCleaved" id="minSeparationUncleavedToCleaved" value="110" size="10" style='font-size: 12px' maxength="60">
 </div>
